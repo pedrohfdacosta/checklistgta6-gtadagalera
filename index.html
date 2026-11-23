@@ -1,0 +1,1560 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GTA 6 — Checklist Interativo de Leonida (51 Itens)</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter e Rajdhani -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Rajdhani', 'sans-serif'],
+                    },
+                    colors: {
+                        vice: {
+                            bg: '#0b0714',
+                            card: '#140e24',
+                            cardHover: '#1a1230',
+                            border: '#2a1f4a',
+                            pink: '#ff2e93',
+                            cyan: '#00f0ff',
+                            gold: '#ffd166',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Fundo escuro Vice City com brilho neon sutil */
+        body {
+            background-color: #0b0714;
+            background-image:
+                radial-gradient(circle at 12% 0%, rgba(255, 46, 147, 0.16) 0%, transparent 38%),
+                radial-gradient(circle at 88% 8%, rgba(0, 240, 255, 0.13) 0%, transparent 38%),
+                radial-gradient(circle at 50% 100%, rgba(255, 209, 102, 0.08) 0%, transparent 45%);
+            background-attachment: fixed;
+        }
+
+        /* Scrollbar personalizada */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b0714;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2a1f4a;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ff2e93;
+        }
+
+        .neon-title {
+            text-shadow: 0 0 20px rgba(255, 46, 147, 0.45);
+        }
+
+        .neon-progress {
+            background: linear-gradient(90deg, #ff2e93 0%, #ffd166 55%, #00f0ff 100%);
+            box-shadow: 0 0 14px rgba(255, 46, 147, 0.45);
+        }
+
+        .neon-progress-cat {
+            background: linear-gradient(90deg, #00f0ff 0%, #ff2e93 100%);
+            box-shadow: 0 0 12px rgba(0, 240, 255, 0.35);
+        }
+
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="text-slate-100 min-h-screen flex flex-col antialiased selection:bg-vice-pink/30 selection:text-white">
+
+    <!-- ==================== CABEÇALHO FIXO ==================== -->
+    <header class="sticky top-0 z-30 backdrop-blur-xl bg-vice-bg/90 border-b border-vice-border/80">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3.5">
+                <!-- Identidade Visual -->
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-vice-pink via-vice-gold to-vice-cyan p-[2px] shrink-0 shadow-lg shadow-vice-pink/25">
+                        <div class="w-full h-full bg-vice-bg rounded-[10px] flex items-center justify-center font-display font-bold text-xl tracking-wider text-white">
+                            VI
+                        </div>
+                    </div>
+                    <div>
+                        <h1 class="font-display text-2xl sm:text-3xl font-bold tracking-wide leading-none bg-gradient-to-r from-vice-pink via-vice-gold to-vice-cyan bg-clip-text text-transparent neon-title">
+                            CHECKLIST GTA 6
+                        </h1>
+                        <p class="text-xs sm:text-sm text-slate-400 mt-0.5">
+                            Guia Completo de Leonida • 51 Segredos, Carros, Cofres &amp; Missões
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Menu de Backup / Compartilhamento -->
+                <div class="flex items-center gap-2 flex-wrap">
+                    <button id="btnExportJson" type="button" title="Baixar backup do progresso em JSON"
+                        class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-vice-card hover:bg-vice-cyan/15 border border-vice-border hover:border-vice-cyan/60 text-slate-200 hover:text-vice-cyan text-xs sm:text-sm font-medium transition cursor-pointer">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                        </svg>
+                        <span>Exportar</span>
+                    </button>
+
+                    <button id="btnOpenImportModal" type="button" title="Importar progresso de um arquivo JSON"
+                        class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-vice-card hover:bg-vice-gold/15 border border-vice-border hover:border-vice-gold/60 text-slate-200 hover:text-vice-gold text-xs sm:text-sm font-medium transition cursor-pointer">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5" />
+                        </svg>
+                        <span>Importar</span>
+                    </button>
+
+                    <button id="btnOpenResetModal" type="button" title="Resetar todo o progresso"
+                        class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-vice-card hover:bg-red-500/15 border border-vice-border hover:border-red-500/60 text-slate-300 hover:text-red-300 text-xs sm:text-sm font-medium transition cursor-pointer">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
+                        </svg>
+                        <span>Resetar</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Barra de Progresso Geral -->
+            <div class="mt-4">
+                <div class="flex items-center justify-between text-xs sm:text-sm mb-1.5">
+                    <span class="text-slate-300 font-medium">
+                        Progresso Geral: <strong id="globalProgressText" class="text-white">0 / 51</strong> concluídos
+                    </span>
+                    <span id="globalProgressPercent" class="font-display font-bold text-base text-vice-cyan">0%</span>
+                </div>
+                <div class="w-full h-2.5 bg-vice-card rounded-full overflow-hidden border border-vice-border">
+                    <div id="globalProgressBar" class="h-full neon-progress rounded-full transition-all duration-500 ease-out" style="width: 0%;"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== CONTEÚDO PRINCIPAL ==================== -->
+    <main class="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-6 space-y-5">
+
+        <!-- 1. Banner de Destaque: Mapa Interativo de Leonida (MapGenie) -->
+        <section class="relative overflow-hidden rounded-2xl border border-vice-cyan/45 bg-gradient-to-r from-vice-card via-[#1c1338] to-vice-card p-4 sm:p-5 shadow-xl shadow-vice-cyan/10">
+            <div class="absolute -right-12 -top-12 w-48 h-48 rounded-full bg-vice-cyan/15 blur-3xl pointer-events-none"></div>
+            <div class="absolute -left-12 -bottom-12 w-48 h-48 rounded-full bg-vice-pink/15 blur-3xl pointer-events-none"></div>
+            <div class="relative flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div class="flex items-start sm:items-center gap-3.5">
+                    <div class="w-12 h-12 rounded-xl bg-vice-cyan/15 border border-vice-cyan/40 flex items-center justify-center text-vice-cyan shrink-0">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498 4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 0 0-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0Z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="inline-block text-[11px] font-bold uppercase tracking-widest text-vice-cyan">Exploração em Tempo Real</span>
+                        <h2 class="font-display text-lg sm:text-xl font-bold text-white leading-tight">
+                            Mapa Interativo de Leonida — MapGenie
+                        </h2>
+                        <p class="text-xs sm:text-sm text-slate-300 mt-0.5">
+                            Abra o mapa interativo em paralelo para localizar cada ilha, garagem, cofre e segredo deste checklist.
+                        </p>
+                    </div>
+                </div>
+                <a href="https://mapgenie.io/grand-theft-auto-6/maps/leonida" target="_blank" rel="noopener noreferrer"
+                    class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-vice-cyan to-sky-400 hover:brightness-110 active:scale-95 text-slate-950 font-bold text-sm transition shadow-lg shadow-vice-cyan/25 shrink-0">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                    </svg>
+                    <span>Abrir Mapa de Leonida</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                    </svg>
+                </a>
+            </div>
+        </section>
+
+        <!-- 2. Mini-Guia Retrátil (Accordion): Como Guardar Carros Roubados -->
+        <section class="bg-vice-card/95 border border-vice-pink/40 rounded-2xl overflow-hidden shadow-lg">
+            <button id="btnToggleAccordion" type="button" aria-expanded="false"
+                class="w-full px-4 sm:px-5 py-3.5 flex items-center justify-between gap-3 text-left hover:bg-vice-pink/5 transition cursor-pointer">
+                <div class="flex items-center gap-3">
+                    <span class="w-9 h-9 rounded-xl bg-vice-pink/15 border border-vice-pink/40 flex items-center justify-center text-vice-pink shrink-0">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
+                        </svg>
+                    </span>
+                    <div>
+                        <h3 class="font-display text-base sm:text-lg font-bold text-white tracking-wide">
+                            Como Guardar Carros Roubados (3 Passos)
+                        </h3>
+                        <p class="text-xs text-slate-400">
+                            Clique para expandir as regras de registro (WAiNK, Moses, Pay 'n' Spray e Clonador de Chaves)
+                        </p>
+                    </div>
+                </div>
+                <svg id="accordionChevron" class="w-5 h-5 text-vice-pink shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                </svg>
+            </button>
+
+            <div id="accordionContent" class="hidden border-t border-vice-border/80 p-4 sm:p-5 bg-vice-bg/50">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+                    <!-- Passo 1 -->
+                    <div class="p-4 rounded-xl bg-vice-card border border-vice-border space-y-2">
+                        <div class="flex items-center gap-2.5">
+                            <span class="w-7 h-7 rounded-lg bg-vice-pink/20 border border-vice-pink/40 text-vice-pink font-display font-bold text-sm flex items-center justify-center shrink-0">1</span>
+                            <h4 class="font-semibold text-sm text-white">Passo 1 — Escaneie com o WAiNK</h4>
+                        </div>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Verifique como entrar, qual rastreador está instalado e o valor de registro antes de pegar o carro.
+                        </p>
+                    </div>
+                    <!-- Passo 2 -->
+                    <div class="p-4 rounded-xl bg-vice-card border border-vice-border space-y-2">
+                        <div class="flex items-center gap-2.5">
+                            <span class="w-7 h-7 rounded-lg bg-vice-gold/20 border border-vice-gold/40 text-vice-gold font-display font-bold text-sm flex items-center justify-center shrink-0">2</span>
+                            <h4 class="font-semibold text-sm text-white">Passo 2 — Visite o Moses no Capítulo 2</h4>
+                        </div>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Ele aceita carros elegíveis sem rastreador em <strong class="text-white">Port Gellhorn</strong>. O seu primeiro registro com o Moses é <strong class="text-vice-gold">grátis</strong>.
+                        </p>
+                    </div>
+                    <!-- Passo 3 -->
+                    <div class="p-4 rounded-xl bg-vice-card border border-vice-border space-y-2">
+                        <div class="flex items-center gap-2.5">
+                            <span class="w-7 h-7 rounded-lg bg-vice-cyan/20 border border-vice-cyan/40 text-vice-cyan font-display font-bold text-sm flex items-center justify-center shrink-0">3</span>
+                            <h4 class="font-semibold text-sm text-white">Passo 3 — Desbloqueie mais no Capítulo 3</h4>
+                        </div>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            O <strong class="text-white">Pay 'n' Spray</strong> lida com rastreadores padrão. Pegue o <strong class="text-vice-cyan">Clonador de Chaves do Randy</strong> para carros sem chave (keyless). Rastreadores avançados exigem desbloqueio posterior.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Painel de Busca, Filtros e Progresso por Categoria -->
+        <section class="bg-vice-card/95 border border-vice-border rounded-2xl p-4 space-y-4 shadow-xl">
+            <div class="flex flex-col md:flex-row gap-3">
+                <!-- Campo de Busca -->
+                <div class="relative flex-1">
+                    <svg class="w-5 h-5 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                    </svg>
+                    <input id="searchInput" type="text" placeholder="Buscar por nome, região, dica, capítulo ou código de cofre (ex: 6969)..."
+                        class="w-full pl-11 pr-10 py-2.5 rounded-xl bg-vice-bg border border-vice-border text-sm text-white placeholder-slate-500 focus:outline-none focus:border-vice-cyan focus:ring-1 focus:ring-vice-cyan transition">
+                    <button id="btnClearSearch" type="button" aria-label="Limpar busca"
+                        class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white p-1 cursor-pointer">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Filtro de Status -->
+                <div class="inline-flex rounded-xl bg-vice-bg p-1 border border-vice-border shrink-0 self-start md:self-auto" role="group">
+                    <button type="button" data-status="all" class="status-btn px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition cursor-pointer">
+                        Todos
+                    </button>
+                    <button type="button" data-status="pending" class="status-btn px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition cursor-pointer">
+                        Pendentes
+                    </button>
+                    <button type="button" data-status="done" class="status-btn px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition cursor-pointer">
+                        Concluídos
+                    </button>
+                </div>
+            </div>
+
+            <!-- Abas/Botões de Categoria com Contadores -->
+            <div id="categoryTabs" class="flex items-center gap-2 overflow-x-auto pb-1 hide-scrollbar">
+                <!-- Preenchido via JS -->
+            </div>
+
+            <!-- Barra de Progresso Dedicada da Categoria Selecionada -->
+            <div id="categoryProgressContainer" class="hidden pt-3 border-t border-vice-border/70">
+                <div class="flex items-center justify-between text-xs sm:text-sm mb-1.5">
+                    <span class="text-slate-300">
+                        Progresso em <strong id="catProgressLabel" class="text-white">Categoria</strong>:
+                        <span id="catProgressCount" class="text-slate-400 ml-1">0 / 0</span>
+                    </span>
+                    <span id="catProgressPercent" class="font-display font-bold text-sm text-vice-pink">0%</span>
+                </div>
+                <div class="w-full h-2 bg-vice-bg rounded-full overflow-hidden border border-vice-border">
+                    <div id="catProgressBar" class="h-full neon-progress-cat rounded-full transition-all duration-500 ease-out" style="width: 0%;"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resumo de Resultados -->
+        <div class="flex items-center justify-between text-xs sm:text-sm text-slate-400 px-1">
+            <span id="resultsCount">Exibindo 51 de 51 itens</span>
+            <span class="hidden sm:inline text-slate-500">Salvo automaticamente neste navegador</span>
+        </div>
+
+        <!-- 4. Grid de Cards dos Itens -->
+        <section id="itemsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Cards renderizados via JS -->
+        </section>
+
+        <!-- Estado Vazio -->
+        <div id="emptyState" class="hidden text-center py-14 px-4 bg-vice-card/50 border border-dashed border-vice-border rounded-2xl">
+            <div class="w-14 h-14 mx-auto mb-3 rounded-2xl bg-vice-bg border border-vice-border flex items-center justify-center text-vice-pink">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-white">Nenhum item encontrado</h3>
+            <p class="text-sm text-slate-400 mt-1">Tente limpar a busca ou alterar os filtros de categoria e status.</p>
+            <button id="btnClearAllFilters" type="button"
+                class="mt-4 px-4 py-2 rounded-xl bg-vice-pink/20 hover:bg-vice-pink/30 border border-vice-pink/50 text-sm font-medium text-white transition cursor-pointer">
+                Limpar Todos os Filtros
+            </button>
+        </div>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="border-t border-vice-border/60 py-5 mt-8 text-center text-xs text-slate-500">
+        <div class="max-w-6xl mx-auto px-4">
+            Progresso salvo individualmente no navegador de cada pessoa (<code class="text-slate-400">localStorage</code>). Use <strong class="text-slate-300">Exportar / Importar</strong> para transferir entre dispositivos.
+        </div>
+    </footer>
+
+    <!-- ==================== MODAL: IMPORTAR PROGRESSO ==================== -->
+    <div id="importModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm">
+        <div class="w-full max-w-lg bg-vice-card border border-vice-border rounded-2xl shadow-2xl overflow-hidden">
+            <div class="px-5 py-4 border-b border-vice-border flex items-center justify-between bg-vice-bg/60">
+                <h2 class="font-display text-xl font-bold tracking-wide text-white flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-vice-gold"></span>
+                    Importar Progresso (JSON)
+                </h2>
+                <button type="button" class="close-import-modal text-slate-400 hover:text-white p-1 rounded-lg cursor-pointer">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <div class="p-5 space-y-4">
+                <!-- Opção 1: Selecionar arquivo JSON -->
+                <div class="space-y-2">
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-vice-cyan">Opção 1 — Carregar arquivo .json</label>
+                    <input id="importFileInput" type="file" accept=".json,application/json"
+                        class="block w-full text-xs text-slate-300 file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-vice-cyan/20 file:text-vice-cyan hover:file:bg-vice-cyan/30 file:cursor-pointer bg-vice-bg border border-vice-border rounded-xl p-2">
+                </div>
+
+                <!-- Opção 2: Colar JSON -->
+                <div class="space-y-2">
+                    <label for="importTextArea" class="block text-xs font-semibold uppercase tracking-wider text-vice-gold">Opção 2 — Ou cole o conteúdo JSON abaixo</label>
+                    <textarea id="importTextArea" rows="4" placeholder='{"completedIds": [1, 4, 10]}'
+                        class="w-full px-3.5 py-2.5 rounded-xl bg-vice-bg border border-vice-border text-xs font-mono text-white placeholder-slate-500 focus:outline-none focus:border-vice-gold resize-none"></textarea>
+                </div>
+
+                <div class="flex items-center justify-end gap-2.5 pt-1">
+                    <button type="button" class="close-import-modal px-4 py-2 rounded-xl bg-vice-bg hover:bg-vice-border/60 border border-vice-border text-xs sm:text-sm font-medium text-slate-300 transition cursor-pointer">
+                        Cancelar
+                    </button>
+                    <button id="btnConfirmImport" type="button"
+                        class="px-4 py-2 rounded-xl bg-gradient-to-r from-vice-pink to-vice-gold text-slate-950 font-bold text-xs sm:text-sm hover:brightness-110 transition cursor-pointer">
+                        Aplicar Progresso
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== MODAL: CONFIRMAR RESET ==================== -->
+    <div id="resetModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm">
+        <div class="w-full max-w-md bg-vice-card border border-vice-border rounded-2xl shadow-2xl p-6">
+            <div class="flex items-center gap-3 mb-3">
+                <div class="w-10 h-10 rounded-xl bg-red-500/15 border border-red-500/40 flex items-center justify-center text-red-400 shrink-0">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+                    </svg>
+                </div>
+                <h2 class="font-display text-xl font-bold text-white">Resetar Todo o Progresso?</h2>
+            </div>
+            <p class="text-sm text-slate-300 leading-relaxed">
+                Tem certeza que deseja desmarcar todos os 51 itens concluídos neste navegador? Essa ação não pode ser desfeita (faça um Exportar antes se quiser guardar um backup).
+            </p>
+            <div class="flex items-center justify-end gap-2.5 mt-6">
+                <button id="btnCancelReset" type="button"
+                    class="px-4 py-2 rounded-xl bg-vice-bg hover:bg-vice-border/60 border border-vice-border text-sm font-medium text-slate-300 transition cursor-pointer">
+                    Cancelar
+                </button>
+                <button id="btnConfirmReset" type="button"
+                    class="px-4 py-2 rounded-xl bg-red-600 hover:bg-red-500 text-sm font-semibold text-white transition cursor-pointer">
+                    Sim, Resetar Tudo
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== TOAST DE NOTIFICAÇÃO ==================== -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 pointer-events-none transition-all duration-300">
+        <div class="flex items-center gap-2.5 px-4 py-3 rounded-xl bg-vice-card border border-vice-cyan/70 shadow-2xl shadow-black/60 text-sm font-medium text-white">
+            <span class="w-2.5 h-2.5 rounded-full bg-vice-cyan animate-pulse"></span>
+            <span id="toastText">Ação realizada!</span>
+        </div>
+    </div>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script>
+        // ============================================================
+        // LISTA COMPLETA DOS 51 ITENS DO CHECKLIST GTA 6
+        // ============================================================
+        const CHECKLIST_ITEMS = [
+            // ---------- CATEGORIA: História/Capítulos (9 itens) ----------
+            {
+                id: 1,
+                category: 'História/Capítulos',
+                title: 'Guardar dinheiro (Cap. 1)',
+                chapter: 'Cap. 1',
+                region: 'Geral',
+                safeCode: '',
+                tip: '',
+                links: [
+                    { label: 'Ver no X', url: 'https://x.com/wilkinmeta/status/2124377587459764320?a=B6tW91YurKn3dfyZyIg&s=46' }
+                ]
+            },
+            {
+                id: 2,
+                category: 'História/Capítulos',
+                title: 'Fazer antes de terminar o Cap. 1 (Parte 1)',
+                chapter: 'Cap. 1',
+                region: 'Geral',
+                safeCode: '',
+                tip: '',
+                links: [
+                    { label: 'Ver no X', url: 'https://x.com/_alfonsocerda/status/2124316435266539596?a=t1qyWg9Re0kl-j5lbeA&s=46' }
+                ]
+            },
+            {
+                id: 3,
+                category: 'História/Capítulos',
+                title: 'Fazer antes de terminar o Cap. 1 (Parte 2)',
+                chapter: 'Cap. 1',
+                region: 'Geral',
+                safeCode: '',
+                tip: '',
+                links: [
+                    { label: 'Ver no X', url: 'https://x.com/_alfonsocerda/status/2124315254070927671?a=bkN_FMJDKsreQWvzC9A&s=46' }
+                ]
+            },
+            {
+                id: 4,
+                category: 'História/Capítulos',
+                title: 'Casa da Mandy (Atrás da casa e porta-malas)',
+                chapter: 'Cap. 1',
+                region: 'Vizinha da casa do Jason',
+                safeCode: '',
+                tip: 'Logo após a missão "Desencana". Saia da casa do Jason, vire à esquerda e siga reto até o coupê verde. Reviste o porta-malas logo após a missão, pois a interação some depois.',
+                links: [
+                    { label: 'Ver no YouTube', url: 'https://www.youtube.com/watch?v=Q3Wn0HLkKiQ' }
+                ]
+            },
+            {
+                id: 5,
+                category: 'História/Capítulos',
+                title: 'Recuperar dinheiro rápido (Cap. 2)',
+                chapter: 'Cap. 2',
+                region: 'Geral',
+                safeCode: '',
+                tip: '',
+                links: [
+                    { label: 'Ver no X', url: 'https://x.com/GTA_SIX_FR/status/2124896796841287896?a=y2TrfAo1DcTYQQH24zY&s=20' }
+                ]
+            },
+            {
+                id: 6,
+                category: 'História/Capítulos',
+                title: 'Roubar Motel La Cascara (La Casara)',
+                chapter: 'Cap. 2',
+                region: 'Port Gellhorn (Kelly County)',
+                safeCode: '6969',
+                tip: 'Operação ilegal do Cap. 2. Pista também fica no mapa da parede superior da Brooks Boatworks.',
+                links: [
+                    { label: 'Ver no X', url: 'https://x.com/BuckBalde/status/2124597618257039566?a=J4qYGXxY6KYdSmTsCYg&s=20' }
+                ]
+            },
+            {
+                id: 7,
+                category: 'História/Capítulos',
+                title: 'Pegar o Clonador de Chaves',
+                chapter: 'Cap. 3',
+                region: 'História',
+                safeCode: '',
+                tip: 'Desbloqueado automaticamente na missão principal "Clonin\' Keys, Makin\' GS" (roubar o Zorrusso para o Randy).',
+                links: [
+                    { label: 'Ver no X', url: 'https://x.com/GTA6_MEMES/status/2124626187079348228?a=AtD6N5faj9UrZRaV_Kg&s=20' }
+                ]
+            },
+            {
+                id: 8,
+                category: 'História/Capítulos',
+                title: 'Fazer antes de terminar o Cap. 3',
+                chapter: 'Cap. 3',
+                region: 'Geral',
+                safeCode: '',
+                tip: '',
+                links: [
+                    { label: 'Ver no X', url: 'https://x.com/Techjunkie_Aman/status/2124536661182964130' }
+                ]
+            },
+            {
+                id: 9,
+                category: 'História/Capítulos',
+                title: 'Antes de ir para "Armadilha do Turista"',
+                chapter: 'Missão Específica',
+                region: 'Geral',
+                safeCode: '',
+                tip: 'Atenção para fazer antes de iniciar a missão "Armadilha do Turista".',
+                links: [
+                    { label: 'Ver no X', url: 'https://x.com/GTA6NewsHub/status/2123801258033353083?a=WrWuH_Axk24MfmiXcI4&s=19' }
+                ]
+            },
+
+            // ---------- CATEGORIA: Carros (14 itens) ----------
+            {
+                id: 10,
+                category: 'Carros',
+                title: "'97 Penumbra FF (Carro do Paul Walker)",
+                chapter: 'Cap. 1+',
+                region: 'Vespucci Island (Rialto Causeway)',
+                safeCode: '',
+                tip: "Tributo verde Velozes e Furiosos. Garagem da mansão ao norte da Rialto Causeway; entre pela porta lateral. Painel de alarme e interruptor do portão na parede do fundo. Pay 'n' Spray: $6.750 (ou Slim Jim no Cap. 2).",
+                links: [
+                    { label: 'Vídeo no X', url: 'https://x.com/Millzaatv_/status/2123384751901778317?a=tLUTTTD0UasQ1_Y3hOY&s=20' },
+                    { label: 'Localização (IG)', url: 'https://www.instagram.com/reel/Df8pOEkCB_E/?gwpx=dW5lNjc4andjbWJw' }
+                ]
+            },
+            {
+                id: 11,
+                category: 'Carros',
+                title: 'Royal Ruby Emerus (Supercarro Progen vermelho e preto)',
+                chapter: 'Livre',
+                region: 'Vespucci Island (Rialto Causeway)',
+                safeCode: '',
+                tip: 'Entrada com portão perto do cruzamento da ponte. Visto ao lado de um SUV preto; abra o portão da entrada antes de sair.',
+                links: []
+            },
+            {
+                id: 12,
+                category: 'Carros',
+                title: "Devil's Rope Gauntlet (Muscle car Bravado preto)",
+                chapter: 'Livre',
+                region: 'Ambrosia',
+                safeCode: '',
+                tip: 'Sede do motoclube Final Chapter ao lado da Terada Tires. Fica na garagem do clube; procure a janela parcialmente aberta no telhado.',
+                links: []
+            },
+            {
+                id: 13,
+                category: 'Carros',
+                title: 'Blue & Orange Racer (Carro de corrida azul e laranja)',
+                chapter: 'Livre',
+                region: 'Capri',
+                safeCode: '',
+                tip: 'Garagens na ponta noroeste de Capri, perto de Capri Sound. Procure rodas laranjas, pintura de corrida azul e aerofólio traseiro grande.',
+                links: []
+            },
+            {
+                id: 14,
+                category: 'Carros',
+                title: 'Big Cat Furia (Piccia estampa de leopardo, placa POUNCE)',
+                chapter: 'Cap. 3+',
+                region: 'Starfish Island',
+                safeCode: '',
+                tip: 'Siga a estrada até a ponta nordeste até a mansão com entrada oval. Fica estacionado na frente; leve o Clonador de Chaves e verifique o rastreador avançado.',
+                links: []
+            },
+            {
+                id: 15,
+                category: 'Carros',
+                title: 'Orange Supercar (Coupé laranja esportivo)',
+                chapter: 'Livre',
+                region: 'Starfish Island',
+                safeCode: '',
+                tip: 'Garagem de parede verde ao lado da mesma mansão de entrada oval da Big Cat Furia. Jogadores já encontraram outros carros raros nessa garagem.',
+                links: []
+            },
+            {
+                id: 16,
+                category: 'Carros',
+                title: 'Lime-Green Sports Car (Esportivo verde-limão com traseira preta)',
+                chapter: 'Livre',
+                region: 'Stockyard',
+                safeCode: '',
+                tip: 'Procure em Stockyard, logo ao norte de Bayside, perto da orla do distrito. Avistamento reportado por jogadores; use o mapa para afunilar a busca.',
+                links: []
+            },
+            {
+                id: 17,
+                category: 'Carros',
+                title: 'Lustrous Toros (SUV Pegassi dourado, placa CASHTLKS)',
+                chapter: 'Livre',
+                region: 'Casanova Island',
+                safeCode: '',
+                tip: 'Siga a leste de Vespucci Island até a mansão grande perto do meio de Casanova. Verifique a garagem no lado sul; pintura dourada e placa personalizada.',
+                links: []
+            },
+            {
+                id: 18,
+                category: 'Carros',
+                title: 'Rolls-Royce (Buckingham Windsor Drop)',
+                chapter: 'Cap. 3',
+                region: 'Capri',
+                safeCode: '',
+                tip: 'Mansão com portão aberto (vire à direita ao entrar). Exige Clonador de Chaves (Cap. 3). Venda ~$15.000 / Registro ~$31.650 (Lista do Randy).',
+                links: [
+                    { label: 'Ver no X', url: 'https://x.com/Techjunkie_Aman/status/2124823847048565152?a=nuv2d3xFF2Benh1BoQs&s=20' }
+                ]
+            },
+            {
+                id: 19,
+                category: 'Carros',
+                title: 'Porsche grátis',
+                chapter: 'Cap. 3',
+                region: 'Geral',
+                safeCode: '',
+                tip: '',
+                links: [
+                    { label: 'Ver no Instagram', url: 'https://www.instagram.com/reel/DgD0ejbP1Xe/?lqvp=MTYzbjFma2N6dmJ5dQ==' }
+                ]
+            },
+            {
+                id: 20,
+                category: 'Carros',
+                title: 'Carro mais caro do jogo',
+                chapter: 'Livre',
+                region: 'Geral',
+                safeCode: '',
+                tip: '',
+                links: [
+                    { label: 'Ver no X', url: 'https://x.com/Caspahz/status/2124910903422587315?a=3vH8Amn1BVQSS40SOus&s=20' }
+                ]
+            },
+            {
+                id: 21,
+                category: 'Carros',
+                title: 'Carro com nitro',
+                chapter: 'Livre',
+                region: 'Geral',
+                safeCode: '',
+                tip: '',
+                links: [
+                    { label: 'Ver no X', url: 'https://x.com/dr0Richtofen/status/2123536364884914215/video/1?a=_trp0a8nWGHWd84dH3Y&s=19' }
+                ]
+            },
+            {
+                id: 22,
+                category: 'Carros',
+                title: 'Carros secretos (Lista)',
+                chapter: 'Livre',
+                region: 'Geral',
+                safeCode: '',
+                tip: '',
+                links: [
+                    { label: 'Ver no X', url: 'https://x.com/dr0richtofen/status/2123805855363604860?a=n7eqJd06ptjNLfP4hlE&s=46' }
+                ]
+            },
+            {
+                id: 23,
+                category: 'Carros',
+                title: 'Carro secreto',
+                chapter: 'Livre',
+                region: 'Geral',
+                safeCode: '',
+                tip: '',
+                links: [
+                    { label: 'Ver no X', url: 'https://x.com/dr0richtofen/status/2123743677751136417?a=0lFfHJzkCGy5SJSmNMI&s=46' }
+                ]
+            },
+
+            // ---------- CATEGORIA: Armas & Grana (11 itens) ----------
+            {
+                id: 24,
+                category: 'Armas & Grana',
+                title: 'AK Dourada + Dinheiro (Variante La Polilla Negra — início do jogo)',
+                chapter: 'Cap. 1+',
+                region: 'Grassrivers / Watson Bay (Palmer Fishing Warehouse, Bobcat Key)',
+                safeCode: '1886',
+                tip: 'Pode ser pega logo no início do jogo na ponta sudeste de Bobcat Key.',
+                links: [
+                    { label: 'Ver no Instagram', url: 'https://www.instagram.com/reel/DgBBB4BTa_g/?jplx=MWFzajVxNGxhanY0eQ==' }
+                ]
+            },
+            {
+                id: 25,
+                category: 'Armas & Grana',
+                title: 'AK Dourada (Variante Marabunta Grande KZ-59)',
+                chapter: 'Cap. 2',
+                region: 'Hamlet (Nova Auto Junkyard)',
+                safeCode: '7777',
+                tip: 'Operação ilegal do Cap. 2 em Nova Auto Junkyard.',
+                links: [
+                    { label: 'Ver no Instagram', url: 'https://www.instagram.com/reel/DgBBB4BTa_g/?jplx=MWFzajVxNGxhanY0eQ==' }
+                ]
+            },
+            {
+                id: 26,
+                category: 'Armas & Grana',
+                title: '50 mil + Arma lendária + Carro com nitro',
+                chapter: 'Livre',
+                region: 'Geral',
+                safeCode: '',
+                tip: '',
+                links: [
+                    { label: 'Link 1 (X)', url: 'https://x.com/ItsIsaacBeast/status/2124744612749385838?a=nM_cUzuUYDBkbg-RWCc&s=2' },
+                    { label: 'Link 2 (X)', url: 'https://x.com/techjunkie_aman/status/2124804605502767439?a=S3_Noz7Dbq2z4QR6cic&s=46' }
+                ]
+            },
+            {
+                id: 27,
+                category: 'Armas & Grana',
+                title: 'Dinheiro + Arma (Local 1)',
+                chapter: 'Livre',
+                region: 'Geral',
+                safeCode: '',
+                tip: '',
+                links: [
+                    { label: 'Ver no Instagram', url: 'https://www.instagram.com/reel/Df7Z2A_M7We/?avpt=MWh5bmRzYmp2MjZ3MQ==' }
+                ]
+            },
+            {
+                id: 28,
+                category: 'Armas & Grana',
+                title: 'Dinheiro + Arma (Local 2)',
+                chapter: 'Livre',
+                region: 'Geral',
+                safeCode: '',
+                tip: '',
+                links: [
+                    { label: 'Ver no Instagram', url: 'https://www.instagram.com/reel/Df9uMowCw1N/?dmpr=MWl5enU5cDlicGh1NQ=' }
+                ]
+            },
+            {
+                id: 29,
+                category: 'Armas & Grana',
+                title: 'Arma com silenciador + Grana',
+                chapter: 'Livre',
+                region: 'Geral',
+                safeCode: '',
+                tip: '',
+                links: [
+                    { label: 'Ver no X', url: 'https://x.com/Millzaatv_/status/2124866585374478558?a=lE3s0nqDVnbizi8nIFA&s=20' }
+                ]
+            },
+            {
+                id: 30,
+                category: 'Armas & Grana',
+                title: 'SMG boa',
+                chapter: 'Livre',
+                region: 'Geral',
+                safeCode: '',
+                tip: '',
+                links: [
+                    { label: 'Ver no X', url: 'https://x.com/KingAnt/status/2124676996966060182?a=wI5tr1kAxHYabh2ve4U&s=20' }
+                ]
+            },
+            {
+                id: 31,
+                category: 'Armas & Grana',
+                title: 'Ponto de saque + Carro',
+                chapter: 'Livre',
+                region: 'Geral',
+                safeCode: '',
+                tip: '',
+                links: [
+                    { label: 'Ver no X', url: 'https://x.com/Millzaatv_/status/2124643312112173381?a=tI4pJZNLamEYhBkRIOw&s=20' }
+                ]
+            },
+            {
+                id: 32,
+                category: 'Armas & Grana',
+                title: 'Esconderijo de drogas para vender',
+                chapter: 'Livre',
+                region: 'Geral',
+                safeCode: '',
+                tip: '',
+                links: [
+                    { label: 'Ver no Instagram', url: 'https://www.instagram.com/reel/DgFOVEdsuMN/?lqvp=cGxjaTFsNGV4NnJr' }
+                ]
+            },
+            {
+                id: 33,
+                category: 'Armas & Grana',
+                title: 'Cartão colecionável e joias',
+                chapter: 'Livre',
+                region: 'Geral',
+                safeCode: '',
+                tip: '',
+                links: [
+                    { label: 'Ver no Instagram', url: 'https://www.instagram.com/reel/DgA26KNJPDo/?dmpr=MXE0enBmZDhsOG94cA==' }
+                ]
+            },
+            {
+                id: 34,
+                category: 'Armas & Grana',
+                title: 'Localizar submarino + Dinheiro',
+                chapter: 'Livre',
+                region: 'Alto Mar',
+                safeCode: '',
+                tip: '',
+                links: [
+                    { label: 'Ver no Instagram', url: 'https://www.instagram.com/reel/DgBk4aqBqix/?dmpr=bTBlcjdwdTA0b3p6' }
+                ]
+            },
+
+            // ---------- CATEGORIA: Locais & Ilhas (5 itens) ----------
+            {
+                id: 35,
+                category: 'Locais & Ilhas',
+                title: 'Hotel Assombrado (Marbelle Hotel — Silent Hill)',
+                chapter: 'Livre',
+                region: 'Vice-Dale County (Sul de Crosstown)',
+                safeCode: '955214',
+                tip: 'Entre pela porta dos fundos. Recompensa: dinheiro, relógio colecionável e carta colecionável.',
+                links: [
+                    { label: 'Ver no X', url: 'https://x.com/xgarbett/status/2123763394687697013?a=zhRX6JVFf49bjuBCGLE&s=46' }
+                ]
+            },
+            {
+                id: 36,
+                category: 'Locais & Ilhas',
+                title: 'Ilha do Cachorro (Cool Dog no Jet Ski)',
+                chapter: 'Livre',
+                region: 'Gambit Bay (Alto Mar)',
+                safeCode: '',
+                tip: 'Vá de barco para o alto mar em Gambit Bay, pule na água e nade para longe (ou afunde e suba) até o Cool Dog chegar. Dá óculos exclusivos + $1.200.',
+                links: [
+                    { label: 'Localização (IG)', url: 'https://www.instagram.com/reel/DgBQqQDGXNP/?evlk=MTE0bGs5czNjMzcwMg==' },
+                    { label: 'Cachorro Jet Ski (IG)', url: 'https://www.instagram.com/p/Df7cOhvlY5K/?evlk=MTMyNGs5M2dpaTQ4dg==' }
+                ]
+            },
+            {
+                id: 37,
+                category: 'Locais & Ilhas',
+                title: 'Ilha secreta com arma e dinheiro',
+                chapter: 'Livre',
+                region: 'Alto Mar / Ilhas',
+                safeCode: '',
+                tip: '',
+                links: [
+                    { label: 'Ver no Instagram', url: 'https://www.instagram.com/reel/DgDdDa2AsMl/?hvrq=M2owNnNnZ3hsNnAw' }
+                ]
+            },
+            {
+                id: 38,
+                category: 'Locais & Ilhas',
+                title: 'Local secreto',
+                chapter: 'Livre',
+                region: 'Geral',
+                safeCode: '',
+                tip: '',
+                links: [
+                    { label: 'Ver no X', url: 'https://x.com/kohlitimes_18/status/2124724799507476490?a=7qrgAZP5s1SmWRCmaOY&s=46' }
+                ]
+            },
+            {
+                id: 39,
+                category: 'Locais & Ilhas',
+                title: 'Depósito (já encontrado — pode marcar como feito)',
+                chapter: 'Livre',
+                region: 'Geral',
+                safeCode: '',
+                tip: '',
+                links: [
+                    { label: 'Ver no X', url: 'https://x.com/ItsOllMS/status/2123402901687312683?a=lRPmq13lRA8Xhh2tmxc&s=20' }
+                ]
+            },
+
+            // ---------- CATEGORIA: Easter Eggs & Mistérios (6 itens) ----------
+            {
+                id: 40,
+                category: 'Easter Eggs & Mistérios',
+                title: 'Jogos Mortais (Hyde Island Hunt)',
+                chapter: 'Livre',
+                region: 'Hyde Island (Ilha remota)',
+                safeCode: '',
+                tip: 'Vá de barco ou jet ski. Coleira explosiva — não tente fugir nadando! Derrote o caçador com escopeta e fuja pela casa de barcos. Recompensa: sniper Island Poacher FF-50 + $20k a $30k.',
+                links: [
+                    { label: 'Ver no X', url: 'https://x.com/xGarbett/status/2124694922464829488?a=Vc3Re7TI-ZyqDKXbQ7E&s=20' }
+                ]
+            },
+            {
+                id: 41,
+                category: 'Easter Eggs & Mistérios',
+                title: 'Segredos do GTA 6 (Compilado)',
+                chapter: 'Livre',
+                region: 'Geral',
+                safeCode: '',
+                tip: '',
+                links: [
+                    { label: 'Ver no Instagram', url: 'https://www.instagram.com/p/Df7-Ju6Bc9e/?lqvp=MXJ2aWt4N3RtaTJ1bA%3D%3D&wa_status_inline=true' }
+                ]
+            },
+            {
+                id: 42,
+                category: 'Easter Eggs & Mistérios',
+                title: 'Easter egg',
+                chapter: 'Livre',
+                region: 'Geral',
+                safeCode: '',
+                tip: '',
+                links: [
+                    { label: 'Ver no Instagram', url: 'https://www.instagram.com/reel/DgBQTQ-hLwh/?gwpx=MXNsOXNzenphZzFsOA=' }
+                ]
+            },
+            {
+                id: 43,
+                category: 'Easter Eggs & Mistérios',
+                title: 'Ritual secreto',
+                chapter: 'Livre',
+                region: 'Geral',
+                safeCode: '',
+                tip: '',
+                links: [
+                    { label: 'Ver no X', url: 'https://x.com/psych_crypted/status/2124050245650665617/video/1?a=VZNgbxb0zAwXZ5PsdXE&s=46' }
+                ]
+            },
+            {
+                id: 44,
+                category: 'Easter Eggs & Mistérios',
+                title: 'Ritual + Armas',
+                chapter: 'Livre',
+                region: 'Geral',
+                safeCode: '',
+                tip: '',
+                links: [
+                    { label: 'Ver no Instagram', url: 'https://www.instagram.com/reel/DgCeXdPB9Uf/?avpt=MW01NWRjZHBpdTlwcA==' }
+                ]
+            },
+            {
+                id: 45,
+                category: 'Easter Eggs & Mistérios',
+                title: 'Criaturas misteriosas',
+                chapter: 'Livre',
+                region: 'Geral',
+                safeCode: '',
+                tip: '',
+                links: [
+                    { label: 'Ver no X', url: 'https://x.com/nobellgyrl/status/2124199066456518935?a=5lsiOrtQztPZPFMzj5g&s=46' }
+                ]
+            },
+
+            // ---------- CATEGORIA: Dicas & Configs (6 itens) ----------
+            {
+                id: 46,
+                category: 'Dicas & Configs',
+                title: 'Arrumar a luz (Configurações)',
+                chapter: 'Config',
+                region: 'Geral',
+                safeCode: '',
+                tip: '',
+                links: [
+                    { label: 'Ver no Instagram', url: 'https://www.instagram.com/reel/DgAShWURBlm/?fqnt=MWJmaHZ1c2ozOGYwMA==' }
+                ]
+            },
+            {
+                id: 47,
+                category: 'Dicas & Configs',
+                title: 'Estamina grande',
+                chapter: 'Dica',
+                region: 'Geral',
+                safeCode: '',
+                tip: '',
+                links: [
+                    { label: 'Ver no Instagram', url: 'https://www.instagram.com/reel/DgBgh5kTZ49/?dmpr=MXZqZWM4bzdydjVsZQ==' }
+                ]
+            },
+            {
+                id: 48,
+                category: 'Dicas & Configs',
+                title: 'Aumentar todos os stats',
+                chapter: 'Dica',
+                region: 'Geral',
+                safeCode: '',
+                tip: '',
+                links: [
+                    { label: 'Ver no X', url: 'https://x.com/wreckagemg/status/2124725809575543058?a=I-kB4bsqIgOa07UOS7k&s=46' }
+                ]
+            },
+            {
+                id: 49,
+                category: 'Dicas & Configs',
+                title: 'Códigos (Geral)',
+                chapter: 'Dica',
+                region: 'Geral',
+                safeCode: '',
+                tip: '',
+                links: [
+                    { label: 'Ver no Instagram', url: 'https://www.instagram.com/p/Df5uaYljRcq/?jplx=cWdkdXlxM2Q1bTZ3' }
+                ]
+            },
+            {
+                id: 50,
+                category: 'Dicas & Configs',
+                title: 'Códigos de cofres',
+                chapter: 'Dica',
+                region: 'Geral',
+                safeCode: '',
+                tip: '',
+                links: [
+                    { label: 'Ver no Instagram', url: 'https://www.instagram.com/p/DgBoRcYt5bt/?dmpr=MXc2b2NkcXR3dXVkMw==' }
+                ]
+            },
+            {
+                id: 51,
+                category: 'Dicas & Configs',
+                title: 'Perfil com itens secretos (@hochmannmana)',
+                chapter: 'Referência',
+                region: 'Instagram',
+                safeCode: '',
+                tip: '',
+                links: [
+                    { label: 'Ver Perfil no IG', url: 'https://www.instagram.com/hochmannmana?hvrq=MWJnM2psajMybWlxYw==' }
+                ]
+            }
+        ];
+
+        const CATEGORIES = [
+            'Todos',
+            'História/Capítulos',
+            'Carros',
+            'Armas & Grana',
+            'Locais & Ilhas',
+            'Easter Eggs & Mistérios',
+            'Dicas & Configs'
+        ];
+
+        const STORAGE_KEY = 'gta6_checklist_leonida_51_v1';
+
+        // Estado reativo da aplicação
+        let state = {
+            completedIds: new Set(),
+            activeCategory: 'Todos',
+            activeStatus: 'all', // 'all' | 'pending' | 'done'
+            searchQuery: ''
+        };
+
+        // ============================================================
+        // PERSISTÊNCIA (localStorage)
+        // ============================================================
+        function loadProgress() {
+            try {
+                const saved = localStorage.getItem(STORAGE_KEY);
+                if (saved) {
+                    const parsed = JSON.parse(saved);
+                    if (Array.isArray(parsed)) {
+                        state.completedIds = new Set(parsed.map(Number));
+                    } else if (parsed && Array.isArray(parsed.completedIds)) {
+                        state.completedIds = new Set(parsed.completedIds.map(Number));
+                    }
+                }
+            } catch (err) {
+                console.error('Erro ao ler progresso do localStorage:', err);
+            }
+        }
+
+        function saveProgress() {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify({
+                    completedIds: [...state.completedIds]
+                }));
+            } catch (err) {
+                console.error('Erro ao salvar progresso no localStorage:', err);
+            }
+        }
+
+        // ============================================================
+        // UTILITÁRIOS
+        // ============================================================
+        function escapeHtml(str) {
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        let toastTimer = null;
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            const toastText = document.getElementById('toastText');
+            toastText.textContent = msg;
+            toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+            }, 2600);
+        }
+
+        function copyTextToClipboard(text) {
+            try {
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                textarea.style.position = 'fixed';
+                textarea.style.opacity = '0';
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                return true;
+            } catch (err) {
+                console.error('Erro ao copiar texto:', err);
+                return false;
+            }
+        }
+
+        function getChapterBadgeClass(chapter) {
+            if (chapter.includes('Cap. 1')) return 'bg-vice-pink/15 text-vice-pink border-vice-pink/40';
+            if (chapter.includes('Cap. 2')) return 'bg-vice-gold/15 text-vice-gold border-vice-gold/40';
+            if (chapter.includes('Cap. 3')) return 'bg-vice-cyan/15 text-vice-cyan border-vice-cyan/40';
+            if (chapter === 'Missão Específica') return 'bg-orange-500/15 text-orange-300 border-orange-500/40';
+            if (chapter === 'Config' || chapter === 'Dica' || chapter === 'Referência') {
+                return 'bg-purple-500/15 text-purple-300 border-purple-500/40';
+            }
+            return 'bg-slate-700/40 text-slate-300 border-slate-600/50';
+        }
+
+        // ============================================================
+        // RENDERIZAÇÃO
+        // ============================================================
+        function updateProgressBars() {
+            const total = CHECKLIST_ITEMS.length;
+            const done = CHECKLIST_ITEMS.filter(item => state.completedIds.has(item.id)).length;
+            const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+
+            document.getElementById('globalProgressText').textContent = `${done} / ${total}`;
+            document.getElementById('globalProgressPercent').textContent = `${pct}%`;
+            document.getElementById('globalProgressBar').style.width = `${pct}%`;
+
+            // Barra de progresso dedicada quando uma categoria está filtrada
+            const catWrap = document.getElementById('categoryProgressContainer');
+            if (state.activeCategory === 'Todos') {
+                catWrap.classList.add('hidden');
+            } else {
+                const catItems = CHECKLIST_ITEMS.filter(i => i.category === state.activeCategory);
+                const catTotal = catItems.length;
+                const catDone = catItems.filter(i => state.completedIds.has(i.id)).length;
+                const catPct = catTotal > 0 ? Math.round((catDone / catTotal) * 100) : 0;
+
+                document.getElementById('catProgressLabel').textContent = state.activeCategory;
+                document.getElementById('catProgressCount').textContent = `${catDone} / ${catTotal} concluídos`;
+                document.getElementById('catProgressPercent').textContent = `${catPct}%`;
+                document.getElementById('catProgressBar').style.width = `${catPct}%`;
+                catWrap.classList.remove('hidden');
+            }
+        }
+
+        function renderCategoryTabs() {
+            const container = document.getElementById('categoryTabs');
+            container.innerHTML = CATEGORIES.map(cat => {
+                const itemsInCat = cat === 'Todos'
+                    ? CHECKLIST_ITEMS
+                    : CHECKLIST_ITEMS.filter(i => i.category === cat);
+                const done = itemsInCat.filter(i => state.completedIds.has(i.id)).length;
+                const total = itemsInCat.length;
+                const isActive = state.activeCategory === cat;
+
+                const btnClass = isActive
+                    ? 'bg-gradient-to-r from-vice-pink to-fuchsia-600 text-white border-transparent shadow-md shadow-vice-pink/30'
+                    : 'bg-vice-bg text-slate-300 border-vice-border hover:border-vice-cyan/60 hover:text-white';
+
+                const badgeClass = isActive
+                    ? 'bg-black/30 text-white'
+                    : 'bg-vice-card text-slate-400';
+
+                return `
+                    <button type="button" data-category="${escapeHtml(cat)}"
+                        class="cat-tab shrink-0 inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl border text-xs sm:text-sm font-medium transition cursor-pointer ${btnClass}">
+                        <span>${escapeHtml(cat)}</span>
+                        <span class="text-[11px] font-semibold px-1.5 py-0.5 rounded-md ${badgeClass}">${done}/${total}</span>
+                    </button>
+                `;
+            }).join('');
+
+            container.querySelectorAll('.cat-tab').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    state.activeCategory = btn.dataset.category;
+                    updateProgressBars();
+                    renderCategoryTabs();
+                    renderItems();
+                });
+            });
+        }
+
+        function renderStatusButtons() {
+            document.querySelectorAll('.status-btn').forEach(btn => {
+                const active = btn.dataset.status === state.activeStatus;
+                if (active) {
+                    btn.className = 'status-btn px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition cursor-pointer bg-vice-cyan text-slate-950 shadow-sm';
+                } else {
+                    btn.className = 'status-btn px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition cursor-pointer text-slate-400 hover:text-white';
+                }
+            });
+        }
+
+        function getFilteredItems() {
+            const q = state.searchQuery.trim().toLowerCase();
+            return CHECKLIST_ITEMS.filter(item => {
+                if (state.activeCategory !== 'Todos' && item.category !== state.activeCategory) {
+                    return false;
+                }
+                const isDone = state.completedIds.has(item.id);
+                if (state.activeStatus === 'pending' && isDone) return false;
+                if (state.activeStatus === 'done' && !isDone) return false;
+
+                if (q) {
+                    const searchable = [
+                        item.title,
+                        item.category,
+                        item.chapter,
+                        item.region,
+                        item.safeCode,
+                        item.tip
+                    ].join(' ').toLowerCase();
+                    if (!searchable.includes(q)) return false;
+                }
+                return true;
+            });
+        }
+
+        function renderItems() {
+            const grid = document.getElementById('itemsGrid');
+            const emptyState = document.getElementById('emptyState');
+            const resultsCount = document.getElementById('resultsCount');
+
+            const filtered = getFilteredItems();
+            resultsCount.textContent = `Exibindo ${filtered.length} de ${CHECKLIST_ITEMS.length} itens`;
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+
+            grid.innerHTML = filtered.map(item => {
+                const isDone = state.completedIds.has(item.id);
+
+                const cardBorder = isDone
+                    ? 'border-emerald-500/45 bg-emerald-950/15 opacity-80'
+                    : 'border-vice-border bg-vice-card/95 hover:border-vice-pink/55 hover:bg-vice-cardHover/90';
+
+                const checkBoxClass = isDone
+                    ? 'bg-emerald-500 border-emerald-400 text-slate-950 shadow-md shadow-emerald-500/30'
+                    : 'bg-vice-bg border-vice-border hover:border-vice-cyan text-transparent';
+
+                const titleClass = isDone
+                    ? 'line-through text-slate-400'
+                    : 'text-white';
+
+                const safeCodeHtml = item.safeCode ? `
+                    <button type="button" data-copy-code="${escapeHtml(item.safeCode)}"
+                        class="copy-code-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-vice-gold/15 hover:bg-vice-gold/25 border border-vice-gold/45 text-vice-gold text-xs font-mono font-bold transition cursor-pointer"
+                        title="Clique para copiar o código do cofre">
+                        <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
+                        </svg>
+                        <span class="code-label">Cofre: ${escapeHtml(item.safeCode)}</span>
+                    </button>
+                ` : '';
+
+                const tipHtml = item.tip ? `
+                    <p class="text-xs text-slate-300/90 leading-relaxed bg-vice-bg/75 border border-vice-border/70 rounded-xl px-3 py-2.5 mt-3">
+                        <span class="text-vice-gold font-semibold">Dica:</span> ${escapeHtml(item.tip)}
+                    </p>
+                ` : '';
+
+                const linksHtml = item.links && item.links.length > 0 ? `
+                    <div class="flex flex-wrap items-center gap-2 mt-3 pt-3 border-t border-vice-border/60">
+                        ${item.links.map(link => `
+                            <a href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer"
+                                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-vice-bg hover:bg-vice-cyan/15 border border-vice-border hover:border-vice-cyan/60 text-xs font-medium text-vice-cyan transition">
+                                <span>${escapeHtml(link.label)}</span>
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                                </svg>
+                            </a>
+                        `).join('')}
+                    </div>
+                ` : '';
+
+                return `
+                    <article class="rounded-2xl border p-4 transition-all duration-200 flex flex-col justify-between shadow-md ${cardBorder}">
+                        <div>
+                            <!-- Linha Superior: Checkbox + Título -->
+                            <div class="flex items-start gap-3">
+                                <button type="button" data-toggle-id="${item.id}" aria-label="Marcar item ${item.id} como concluído"
+                                    class="toggle-item-btn mt-0.5 w-6 h-6 rounded-lg border-2 flex items-center justify-center shrink-0 transition cursor-pointer ${checkBoxClass}">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                                    </svg>
+                                </button>
+
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex items-start justify-between gap-2">
+                                        <h3 data-toggle-id="${item.id}" class="toggle-item-btn font-semibold text-sm sm:text-base leading-snug cursor-pointer select-none ${titleClass}">
+                                            <span class="text-xs font-mono text-slate-500 mr-1">#${item.id}</span>${escapeHtml(item.title)}
+                                        </h3>
+                                    </div>
+
+                                    <!-- Badges de Capítulo, Região e Cofre -->
+                                    <div class="flex flex-wrap items-center gap-1.5 mt-2.5">
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-lg border text-[11px] font-semibold ${getChapterBadgeClass(item.chapter)}">
+                                            ${escapeHtml(item.chapter)}
+                                        </span>
+                                        <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-lg bg-vice-bg border border-vice-border text-[11px] text-slate-300">
+                                            <svg class="w-3 h-3 text-vice-cyan shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                                            </svg>
+                                            <span>${escapeHtml(item.region)}</span>
+                                        </span>
+                                        ${safeCodeHtml}
+                                    </div>
+                                </div>
+                            </div>
+
+                            ${tipHtml}
+                        </div>
+
+                        ${linksHtml}
+                    </article>
+                `;
+            }).join('');
+
+            // Eventos de marcar/desmarcar
+            grid.querySelectorAll('.toggle-item-btn').forEach(el => {
+                el.addEventListener('click', () => {
+                    const id = Number(el.dataset.toggleId);
+                    if (state.completedIds.has(id)) {
+                        state.completedIds.delete(id);
+                    } else {
+                        state.completedIds.add(id);
+                    }
+                    saveProgress();
+                    updateProgressBars();
+                    renderCategoryTabs();
+                    renderItems();
+                });
+            });
+
+            // Eventos de copiar código de cofre
+            grid.querySelectorAll('.copy-code-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const code = btn.dataset.copyCode;
+                    if (copyTextToClipboard(code)) {
+                        const label = btn.querySelector('.code-label');
+                        const originalText = `Cofre: ${code}`;
+                        label.textContent = 'Copiado!';
+                        btn.classList.add('bg-emerald-500/25', 'border-emerald-400', 'text-emerald-300');
+                        showToast(`Código do cofre ${code} copiado!`);
+                        setTimeout(() => {
+                            label.textContent = originalText;
+                            btn.classList.remove('bg-emerald-500/25', 'border-emerald-400', 'text-emerald-300');
+                        }, 1600);
+                    } else {
+                        showToast('Não foi possível copiar o código.');
+                    }
+                });
+            });
+        }
+
+        // ============================================================
+        // EVENTOS GLOBAIS E MODAIS
+        // ============================================================
+        function bindEvents() {
+            // Accordion do Mini-Guia de Carros Roubados
+            const btnToggleAccordion = document.getElementById('btnToggleAccordion');
+            const accordionContent = document.getElementById('accordionContent');
+            const accordionChevron = document.getElementById('accordionChevron');
+
+            btnToggleAccordion.addEventListener('click', () => {
+                const isHidden = accordionContent.classList.toggle('hidden');
+                btnToggleAccordion.setAttribute('aria-expanded', String(!isHidden));
+                accordionChevron.classList.toggle('rotate-180', !isHidden);
+            });
+
+            // Busca por texto
+            const searchInput = document.getElementById('searchInput');
+            const btnClearSearch = document.getElementById('btnClearSearch');
+
+            searchInput.addEventListener('input', (e) => {
+                state.searchQuery = e.target.value;
+                btnClearSearch.classList.toggle('hidden', !state.searchQuery);
+                renderItems();
+            });
+
+            btnClearSearch.addEventListener('click', () => {
+                state.searchQuery = '';
+                searchInput.value = '';
+                btnClearSearch.classList.add('hidden');
+                renderItems();
+            });
+
+            // Botões de status
+            document.querySelectorAll('.status-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    state.activeStatus = btn.dataset.status;
+                    renderStatusButtons();
+                    renderItems();
+                });
+            });
+
+            // Limpar todos os filtros (estado vazio)
+            document.getElementById('btnClearAllFilters').addEventListener('click', () => {
+                state.activeCategory = 'Todos';
+                state.activeStatus = 'all';
+                state.searchQuery = '';
+                searchInput.value = '';
+                btnClearSearch.classList.add('hidden');
+                updateProgressBars();
+                renderCategoryTabs();
+                renderStatusButtons();
+                renderItems();
+            });
+
+            // Exportar Progresso (baixa arquivo JSON)
+            document.getElementById('btnExportJson').addEventListener('click', () => {
+                try {
+                    const payload = JSON.stringify({
+                        app: 'GTA6-Checklist-Leonida',
+                        exportedAt: new Date().toISOString(),
+                        completedIds: [...state.completedIds].sort((a, b) => a - b)
+                    }, null, 2);
+
+                    const blob = new Blob([payload], { type: 'application/json' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'gta6-checklist-progresso.json';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                    showToast('Backup JSON baixado com sucesso!');
+                } catch (err) {
+                    showToast('Erro ao exportar progresso.');
+                }
+            });
+
+            // Modal: Importar Progresso
+            const importModal = document.getElementById('importModal');
+            const importFileInput = document.getElementById('importFileInput');
+            const importTextArea = document.getElementById('importTextArea');
+
+            document.getElementById('btnOpenImportModal').addEventListener('click', () => {
+                importFileInput.value = '';
+                importTextArea.value = '';
+                importModal.classList.remove('hidden');
+            });
+
+            document.querySelectorAll('.close-import-modal').forEach(btn => {
+                btn.addEventListener('click', () => importModal.classList.add('hidden'));
+            });
+
+            importModal.addEventListener('click', (e) => {
+                if (e.target === importModal) importModal.classList.add('hidden');
+            });
+
+            importFileInput.addEventListener('change', (e) => {
+                const file = e.target.files && e.target.files[0];
+                if (!file) return;
+                const reader = new FileReader();
+                reader.onload = (evt) => {
+                    importTextArea.value = evt.target.result || '';
+                };
+                reader.readAsText(file);
+            });
+
+            document.getElementById('btnConfirmImport').addEventListener('click', () => {
+                const raw = importTextArea.value.trim();
+                if (!raw) {
+                    showToast('Selecione um arquivo ou cole um JSON válido.');
+                    return;
+                }
+                try {
+                    const parsed = JSON.parse(raw);
+                    const ids = Array.isArray(parsed)
+                        ? parsed
+                        : (Array.isArray(parsed.completedIds) ? parsed.completedIds : null);
+
+                    if (!ids) {
+                        showToast('Formato de JSON inválido.');
+                        return;
+                    }
+
+                    const validIds = new Set(CHECKLIST_ITEMS.map(i => i.id));
+                    state.completedIds = new Set(ids.map(Number).filter(id => validIds.has(id)));
+                    saveProgress();
+                    importModal.classList.add('hidden');
+                    updateProgressBars();
+                    renderCategoryTabs();
+                    renderItems();
+                    showToast(`Progresso importado (${state.completedIds.size} itens marcados)!`);
+                } catch (err) {
+                    showToast('Erro ao ler o JSON. Verifique o conteúdo.');
+                }
+            });
+
+            // Modal: Resetar Tudo
+            const resetModal = document.getElementById('resetModal');
+
+            document.getElementById('btnOpenResetModal').addEventListener('click', () => {
+                resetModal.classList.remove('hidden');
+            });
+
+            document.getElementById('btnCancelReset').addEventListener('click', () => {
+                resetModal.classList.add('hidden');
+            });
+
+            resetModal.addEventListener('click', (e) => {
+                if (e.target === resetModal) resetModal.classList.add('hidden');
+            });
+
+            document.getElementById('btnConfirmReset').addEventListener('click', () => {
+                state.completedIds.clear();
+                saveProgress();
+                resetModal.classList.add('hidden');
+                updateProgressBars();
+                renderCategoryTabs();
+                renderItems();
+                showToast('Todo o progresso foi resetado.');
+            });
+        }
+
+        // ============================================================
+        // INICIALIZAÇÃO
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', () => {
+            loadProgress();
+            bindEvents();
+            updateProgressBars();
+            renderCategoryTabs();
+            renderStatusButtons();
+            renderItems();
+        });
+    </script>
+</body>
+</html>
